@@ -61,7 +61,7 @@
               <div class="zf-clearBoth"></div>
             </li>
             <!-- benefits tab -->
-            <div class="account-benefits-box">
+            <div class="account-benefits-box" id="benefits-box">
               <h3>Account Creation Benefits</h3>
               <div class="benefits-list">
                 <ul>
@@ -272,7 +272,9 @@
                   </div>
                   <div class="zfCol">
                     <div class="zf-tempFrmWrapper zf-large">
-                      <label class="zf-labelName"> Business Type </label>
+                      <label class="zf-labelName"> Business Type 
+                        <em class="zf-important"> *</em>
+                      </label>
                       <div class="zf-tempContDiv">
                         <select
                           class="zf-form-sBox"
@@ -298,72 +300,48 @@
                   </div>
                 </div>
               </div>
-              <div class="zf-tempFrmWrapper zf-termsandCond">
-                <label class="zf-labelName"> </label>
+
+              <div class="zf-tempFrmWrapper zf-decesion">
                 <div class="zf-tempContDiv">
-                  <div class="zf-termsContainer">
-                    <div class="zf-termsAccept">
-                      <input
-                        class="zf-checkBoxType zf-flLeft"
-                        name="TermsConditions"
-                        type="checkbox"
-                      /><label class="zf-descFld">
-                        <div>
-                          By creating an account, I agree to the
-                          <a
-                            href="http://#"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            >Terms and Conditions</a
-                          >, and
-                          <a
-                            href="http://#"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            >Privacy Policy</a
-                          >.<br />
-                        </div>
-                      </label>
-                    </div>
-                  </div>
+                  <input
+                    type="checkbox"
+                    checktype="c1"
+                    id="DecisionBox1"
+                    name="DecisionBox1"
+                  /><label for="DecisionBox1" class="zf-labelName">
+                    Yes, keep me up to date on news and exclusive offers on
+                    products including tobacco.
+                  </label>
+                  <p
+                    id="DecisionBox1_error"
+                    class="zf-errorMessage"
+                    style="display: none"
+                  >
+                    Please Enter Correct Details
+                  </p>
                 </div>
-                <p
-                  id="TermsConditions_error"
-                  class="zf-errorMessage"
-                  elname="error"
-                  style="display: none"
-                >
-                  Please Enter Correct Details
-                </p>
-                <div class="clearBoth"></div>
+                <div class="zf-clearBoth"></div>
               </div>
-              <div class="zf-tempFrmWrapper zf-termsandCond">
-                <label class="zf-labelName"> </label>
+              <div class="zf-tempFrmWrapper zf-decesion">
                 <div class="zf-tempContDiv">
-                  <div class="zf-termsContainer">
-                    <div class="zf-termsAccept">
-                      <input
-                        class="zf-checkBoxType zf-flLeft"
-                        name="TermsConditions1"
-                        type="checkbox"
-                      /><label class="zf-descFld">
-                        <div>
-                          Yes, kepp me up to date on news and exclusive offers
-                          on products including tobacco.<br />
-                        </div>
-                      </label>
-                    </div>
-                  </div>
+                  <input
+                    type="checkbox"
+                    checktype="c1"
+                    id="DecisionBox2"
+                    name="DecisionBox2"
+                  /><label for="DecisionBox2" class="zf-labelName">
+                    By creating an account, I agree to the Terms and Conditions,
+                    and Privacy Policy.
+                  </label>
+                  <p
+                    id="DecisionBox2_error"
+                    class="zf-errorMessage"
+                    style="display: none"
+                  >
+                    Please Enter Correct Details
+                  </p>
                 </div>
-                <p
-                  id="TermsConditions1_error"
-                  class="zf-errorMessage"
-                  elname="error"
-                  style="display: none"
-                >
-                  Please Enter Correct Details
-                </p>
-                <div class="clearBoth"></div>
+                <div class="zf-clearBoth"></div>
               </div>
 
               <button
@@ -635,7 +613,7 @@
               <div class="zftwoColumn zfMultiColGrid">
                 <div class="zfCol">
                   <div class="zf-tempFrmWrapper zf-decesion">
-                    <div class="zf-tempContDiv">
+                    <div class="zf-tempContDiv billing-check">
                       <input
                         type="checkbox"
                         checktype="c1"
@@ -1017,12 +995,7 @@
             <div class="zf-fmFooter">
               <a type="button" class="prev">Previous</a>
 
-              <button
-                type="submit"
-                class="next"
-                name="submit"
-                id="submitBtn"
-              >
+              <button type="submit" class="next" name="submit" id="submitBtn">
                 Submit
               </button>
             </div>
@@ -1042,6 +1015,7 @@
         "SingleLine14",
         "SingleLine15",
         "SingleLine",
+        "Dropdown",
         "Dropdown1",
         "SingleLine2",
         "SingleLine4",
@@ -1091,38 +1065,29 @@
       var isSalesIQIntegrationEnabled = false;
       var salesIQFieldsArray = [];
 
-      //address toggle
-      document
-        .getElementById("DecisionBox")
-        .addEventListener("change", function () {
-          const isChecked = this.checked;
+      document.addEventListener("DOMContentLoaded", function () {
+        const billing = {
+          addressType: document.forms.form["Dropdown1"],
+          city: document.forms.form["SingleLine2"],
+          street1: document.forms.form["SingleLine4"],
+          street2: document.forms.form["SingleLine5"],
+          state: document.forms.form["SingleLine6"],
+          country: document.forms.form["SingleLine1"],
+          zip: document.forms.form["SingleLine7"],
+        };
 
-          // Billing fields
-          const billing = {
-            addressType: document.forms.form["Dropdown1"],
-            city: document.forms.form["SingleLine2"],
-            street1: document.forms.form["SingleLine4"],
-            street2: document.forms.form["SingleLine5"],
-            state: document.forms.form["SingleLine6"],
-            country: document.forms.form["SingleLine1"],
-            zip: document.forms.form["SingleLine7"],
-          };
+        const shipping = {
+          addressType: document.forms.form["Dropdown4"],
+          city: document.forms.form["SingleLine9"],
+          street1: document.forms.form["SingleLine10"],
+          street2: document.forms.form["SingleLine11"],
+          state: document.forms.form["SingleLine12"],
+          country: document.forms.form["SingleLine8"],
+          zip: document.forms.form["SingleLine13"],
+        };
 
-          // Shipping fields
-          const shipping = {
-            addressType: document.forms.form["Dropdown4"],
-            city: document.forms.form["SingleLine9"],
-            street1: document.forms.form["SingleLine10"],
-            street2: document.forms.form["SingleLine11"],
-            state: document.forms.form["SingleLine12"],
-            country: document.forms.form["SingleLine8"],
-            zip: document.forms.form["SingleLine13"],
-          };
-
-          // Shipping section
-          const shippingSection = document.getElementById("shippingSection");
-
-          if (isChecked) {
+        function syncShippingWithBilling() {
+          if (document.getElementById("DecisionBox").checked) {
             shipping.addressType.value = billing.addressType.value;
             shipping.city.value = billing.city.value;
             shipping.street1.value = billing.street1.value;
@@ -1130,123 +1095,160 @@
             shipping.state.value = billing.state.value;
             shipping.country.value = billing.country.value;
             shipping.zip.value = billing.zip.value;
+          }
+        }
 
-            // Hide shipping section
-            if (shippingSection) {
-              shippingSection.style.display = "none";
+        ["input", "change"].forEach((eventType) => {
+          [
+            billing.addressType,
+            billing.city,
+            billing.street1,
+            billing.street2,
+            billing.state,
+            billing.country,
+            billing.zip,
+          ].forEach((field) => {
+            field.addEventListener(eventType, syncShippingWithBilling);
+          });
+        });
+
+        //address toggle
+        document
+          .getElementById("DecisionBox")
+          .addEventListener("change", function () {
+            const isChecked = this.checked;
+
+            // Shipping section
+            const shippingSection = document.getElementById("shippingSection");
+
+            if (isChecked) {
+              shipping.addressType.value = billing.addressType.value;
+              shipping.city.value = billing.city.value;
+              shipping.street1.value = billing.street1.value;
+              shipping.street2.value = billing.street2.value;
+              shipping.state.value = billing.state.value;
+              shipping.country.value = billing.country.value;
+              shipping.zip.value = billing.zip.value;
+
+              // Hide shipping section
+              if (shippingSection) {
+                shippingSection.style.display = "none";
+              }
+            } else {
+              // Clear shipping values
+              shipping.addressType.value = "-Select-";
+              shipping.city.value = "";
+              shipping.street1.value = "";
+              shipping.street2.value = "";
+              shipping.state.value = "";
+              shipping.country.value = "";
+              shipping.zip.value = "";
+
+              // Showing shipping section
+              if (shippingSection) {
+                shippingSection.style.display = "block";
+              }
             }
-          } else {
-            // Clear shipping values
-            shipping.addressType.value = "-Select-";
-            shipping.city.value = "";
-            shipping.street1.value = "";
-            shipping.street2.value = "";
-            shipping.state.value = "";
-            shipping.country.value = "";
-            shipping.zip.value = "";
+          });
 
-            // Show shipping section
-            if (shippingSection) {
-              shippingSection.style.display = "block";
+        //###validations
+        function validateStep(stepIndex) {
+          const step = steps[stepIndex];
+
+          // Getting the mandatory and validatable fields inside the current step
+          const allMandFields = zf_MandArray.filter((id) =>
+            step.contains(document.forms.form[id])
+          );
+          const allValidFields = zf_FieldArray.filter((id) =>
+            step.contains(document.forms.form[id])
+          );
+
+          // Saves the original full arrays
+          const oldMandArray = [...zf_MandArray];
+          const oldFieldArray = [...zf_FieldArray];
+
+          // Temporarily sets arrays to current step only
+          zf_MandArray = allMandFields;
+          zf_FieldArray = allValidFields;
+
+          const isValid = zf_CheckMandatory() && zf_ValidCheck();
+
+          zf_MandArray = oldMandArray;
+          zf_FieldArray = oldFieldArray;
+
+          return isValid;
+        }
+
+        const steps = document.querySelectorAll(".step");
+        let currentStep = 0;
+
+        function showStep(index) {
+          steps.forEach((step, i) => {
+            step.classList.toggle("active", i === index);
+          });
+
+          const progressItems = document.querySelectorAll("#progressbar li");
+          progressItems.forEach((item, i) => {
+            item.classList.toggle("active", i <= index);
+          });
+          const benefitsBox = document.getElementById("benefits-box");
+          if (benefitsBox) {
+            benefitsBox.style.display = index === 0 ? "block" : "none";
+          }
+        }
+        // next button functionality
+        document.querySelectorAll(".next").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            if (validateStep(currentStep)) {
+              currentStep++;
+              showStep(currentStep);
             }
-          }
+          });
         });
 
-      //###validations
-      function validateStep(stepIndex) {
-        const step = steps[stepIndex];
+        // Previous button functionality
 
-        // Get only the mandatory and validatable fields inside the current step
-        const allMandFields = zf_MandArray.filter((id) =>
-          step.contains(document.forms.form[id])
-        );
-        const allValidFields = zf_FieldArray.filter((id) =>
-          step.contains(document.forms.form[id])
-        );
-
-        // Save the original full arrays
-        const oldMandArray = [...zf_MandArray];
-        const oldFieldArray = [...zf_FieldArray];
-
-        // Temporarily set arrays to current step only
-        zf_MandArray = allMandFields;
-        zf_FieldArray = allValidFields;
-
-        // Run Zoho validations
-        const isValid = zf_CheckMandatory() && zf_ValidCheck();
-
-        // Restore full form validation arrays
-        zf_MandArray = oldMandArray;
-        zf_FieldArray = oldFieldArray;
-
-        return isValid;
-      }
-
-      const steps = document.querySelectorAll(".step");
-      let currentStep = 0;
-
-      function showStep(index) {
-        steps.forEach((step, i) => {
-          step.classList.toggle("active", i === index);
+        document.querySelectorAll(".prev").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            if (currentStep > 0) {
+              currentStep--;
+              showStep(currentStep);
+            }
+          });
         });
 
-        const progressItems = document.querySelectorAll("#progressbar li");
-        progressItems.forEach((item, i) => {
-          item.classList.toggle("active", i <= index);
-        });
-      }
-      // next button functionality
-      document.querySelectorAll(".next").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          if (validateStep(currentStep)) {
-            currentStep++;
-            showStep(currentStep);
-          }
-        });
-      });
+        // Show first step on load
+        showStep(currentStep);
 
-      // Previous button functionality
+        const fileInput = document.getElementById("fileInput");
+        const fileList = document.getElementById("fileList");
 
-      document.querySelectorAll(".prev").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          if (currentStep > 0) {
-            currentStep--;
-            showStep(currentStep);
-          }
-        });
-      });
+        fileInput.addEventListener("change", () => {
+          fileList.innerHTML = ""; // Clear previous
 
-      // Show first step on load
-      showStep(currentStep);
-
-      const fileInput = document.getElementById("fileInput");
-      const fileList = document.getElementById("fileList");
-
-      fileInput.addEventListener("change", () => {
-        fileList.innerHTML = ""; // Clear previous
-
-        Array.from(fileInput.files).forEach((file, index) => {
-          const fileItem = document.createElement("div");
-          fileItem.className = "file-item";
-          fileItem.innerHTML = `
+          Array.from(fileInput.files).forEach((file, index) => {
+            const fileItem = document.createElement("div");
+            fileItem.className = "file-item";
+            fileItem.innerHTML = `
         <span>${file.name}</span>
         <button onclick="removeFile(${index})">🗑️</button>
       `;
-          fileList.appendChild(fileItem);
+            fileList.appendChild(fileItem);
+          });
         });
+
+        function removeFile(index) {
+          const dt = new DataTransfer();
+          const { files } = fileInput;
+
+          Array.from(files).forEach((file, i) => {
+            if (i !== index) dt.items.add(file);
+          });
+
+          fileInput.files = dt.files;
+          fileInput.dispatchEvent(new Event("change"));
+        }
       });
-
-      function removeFile(index) {
-        const dt = new DataTransfer();
-        const { files } = fileInput;
-
-        Array.from(files).forEach((file, i) => {
-          if (i !== index) dt.items.add(file);
-        });
-
-        fileInput.files = dt.files;
-        fileInput.dispatchEvent(new Event("change"));
-      }
     </script>
   </body>
 </html>
