@@ -705,7 +705,7 @@ ol, ul {
 }
 
 .zf-fmFooter {
-	margin-left: 40px;
+	margin-left: 5px;
     display: flex;
     align-items: center;
     gap: 20px;
