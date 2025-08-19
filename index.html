@@ -493,24 +493,13 @@
                       <em class="zf-important"> *</em>
                     </label>
                     <div class="zf-tempContDiv">
-                      <span>
-                        <input
-                          type="text"
-                          name="SingleLine1"
-                          checktype="c1"
-                          value=""
-                          maxlength="255"
-                          fieldType="1"
-                          placeholder=""
-                        />
-                      </span>
-                      <p
-                        id="SingleLine1_error"
-                        class="zf-errorMessage"
-                        style="display: none"
-                      >
-                        Please Enter Correct Details
-                      </p>
+                      <select class="zf-form-sBox" name="Dropdown2" checktype="c1">
+                        <option selected="true" value="-Select-">Select an Option</option>
+                        <option value="DEU">Germany</option>
+                        <option value="AUT">Austria</option>
+                      </select>
+                      <p id="Dropdown2_error" class="zf-errorMessage" style="display:none;">
+                        Invalid value</p>
                     </div>
                     <div class="zf-clearBoth"></div>
                   </div>
@@ -755,24 +744,13 @@
                         <em class="zf-important"> *</em>
                       </label>
                       <div class="zf-tempContDiv">
-                        <span>
-                          <input
-                            type="text"
-                            name="SingleLine8"
-                            checktype="c1"
-                            value=""
-                            maxlength="255"
-                            fieldType="1"
-                            placeholder=""
-                          />
-                        </span>
-                        <p
-                          id="SingleLine8_error"
-                          class="zf-errorMessage"
-                          style="display: none"
-                        >
-                          Please Enter Correct Details
-                        </p>
+                        <select class="zf-form-sBox" name="Dropdown5" checktype="c1">
+                          <option selected="true" value="-Select-">Select an Option</option>
+                          <option value="DEU">Germany</option>
+                          <option value="AUT">Austria</option>
+                        </select>
+                        <p id="Dropdown5_error" class="zf-errorMessage" style="display:none;">
+                          Invalid value</p>
                       </div>
                       <div class="zf-clearBoth"></div>
                     </div>
@@ -1008,13 +986,13 @@
         "SingleLine2",
         "SingleLine4",
         "SingleLine6",
-        "SingleLine1",
+        "Dropdown2",
         "SingleLine7",
         "Dropdown4",
+        "Dropdown5",
         "SingleLine9",
         "SingleLine10",
         "SingleLine12",
-        "SingleLine8",
         "SingleLine13",
         "FileUpload",
         "FileUpload1",
@@ -1030,10 +1008,10 @@
         "TermsConditions",
         "TermsConditions1",
         "Dropdown1",
+        "Dropdown2",
         "SingleLine2",
         "SingleLine4",
         "SingleLine6",
-        "SingleLine1",
         "SingleLine3",
         "SingleLine5",
         "SingleLine7",
@@ -1042,7 +1020,6 @@
         "SingleLine9",
         "SingleLine10",
         "SingleLine12",
-        "SingleLine8",
         "SingleLine11",
         "SingleLine13",
         "SingleLine16",
@@ -1060,7 +1037,7 @@
           street1: document.forms.form["SingleLine4"],
           street2: document.forms.form["SingleLine5"],
           state: document.forms.form["SingleLine6"],
-          country: document.forms.form["SingleLine1"],
+          country: document.forms.form["Dropdown2"],
           zip: document.forms.form["SingleLine7"],
         };
 
@@ -1070,7 +1047,7 @@
           street1: document.forms.form["SingleLine10"],
           street2: document.forms.form["SingleLine11"],
           state: document.forms.form["SingleLine12"],
-          country: document.forms.form["SingleLine8"],
+          country: document.forms.form["Dropdown5"],
           zip: document.forms.form["SingleLine13"],
         };
 
