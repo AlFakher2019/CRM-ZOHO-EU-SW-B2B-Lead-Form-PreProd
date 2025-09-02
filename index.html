@@ -1178,7 +1178,9 @@
               <div class="zftwoColumn zfMultiColGrid">
                 <div class="zfCol">
                   <div class="zf-tempFrmWrapper zf-large">
-                    <label class="zf-labelName"> License Number </label>
+                    <label class="zf-labelName"> License Number 
+                      <em class="zf-important">*</em>
+                    </label>
                     <div class="zf-tempContDiv">
                       <span>
                         <input
@@ -1231,7 +1233,8 @@
               <div class="zftwoColumn zfMultiColGrid">
                 <div class="zfCol">
                   <div class="zf-tempFrmWrapper zf-large">
-                    <label class="zf-labelName"> License Number </label>
+                    <label class="zf-labelName"> License Number
+                       <em class="zf-important">*</em> </label>
                     <div class="zf-tempContDiv">
                       <span>
                         <input
@@ -1261,7 +1264,7 @@
             <div class="zf-tempFrmWrapper">
               <label class="zf-labelName">
                 File Upload
-                <!-- <em class="zf-important">*</em> -->
+                <em class="zf-important">*</em>
               </label>
               <div class="zf-tempContDiv">
                 <input type="file" name="FileUpload1" checktype="c1" />
@@ -1279,7 +1282,7 @@
             <div class="zf-fmFooter">
               <a type="button" class="prev">Previous</a>
 
-              <button type="submit" class="next" name="submit" id="submitBtn">
+              <button type="submit" class="next" name="submit" id="submitBtn" disabled>
                 Submit
               </button>
             </div>
@@ -1310,8 +1313,10 @@
         "Dropdown5",
         "SingleLine9",
         "SingleLine10",
-        
+        "FileUpload1",
         "SingleLine13",
+        "SingleLine17",
+        "SingleLine16",
        
       ];
       var zf_FieldArray = [
@@ -1570,13 +1575,14 @@ document.addEventListener("DOMContentLoaded", applyZusatzPositioning);
 window.addEventListener("resize", applyZusatzPositioning);
 </script>
 
-<!-- <script>
+<script>
 document.addEventListener("DOMContentLoaded", function () {
   const submitBtn = document.getElementById("submitBtn");
   const requiredFields = [
-    "FileUpload",      // Final step file input 1
-    "FileUpload1",     // Final step file input 2
-    // Add more required fields from final step if needed
+    "SingleLine17",                 
+    "FileUpload1",
+    "SingleLine16",     // Final step file input 2
+    
   ];
 
   function checkRequiredFieldsFilled() {
@@ -1612,7 +1618,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-</script> -->
+</script>
 
 
 
